@@ -1,0 +1,33 @@
+// Connect to MongoDB (replace 'your_database_name' and 'your_connection_string' with your actual values)
+use BLstore
+db = connect("BLstore")
+
+// Users Table
+db.createCollection("Users")
+db.Users.createIndex({ "user_id": 1 }, { unique: true })
+
+// Products Table
+db.createCollection("Products")
+db.Products.createIndex({ "product_id": 1 }, { unique: true })
+
+// Insert a sample user (you can customize this based on your needs)
+db.Users.insert({
+  "user_id": ObjectId(), // Generates a unique identifier
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "password_hash": "hashed_password", // Replace with the actual hashed password
+  "registration_date": ISODate(), // Current date and time
+  "last_login_date": null // No login date initially
+})
+
+// Insert a sample product (you can customize this based on your needs)
+db.Products.insert({
+  "product_id": ObjectId(), // Generates a unique identifier
+  "product_name": "Smartphone",
+  "category": "smartphones",
+  "description": "A high-quality smartphone.",
+  "price": 599.99,
+  "image_url": "https://example.com/smartphone_image.jpg"
+})
+
